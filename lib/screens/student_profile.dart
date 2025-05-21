@@ -1,5 +1,3 @@
-// lib/screens/student_profile.dart
-
 import 'package:flutter/material.dart';
 import 'package:transition_curriculum/models/student.dart';
 import 'package:transition_curriculum/services/database_helper.dart';
@@ -13,6 +11,7 @@ class StudentProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.deepPurple, // Set purple background color
       appBar: AppBar(
         title: Text(student.name),
         actions: [
@@ -52,14 +51,14 @@ class StudentProfileScreen extends StatelessWidget {
             // Student basic info
             Text(
               "Disability: ${student.disability}",
-              style: AppTextStyles.body,
+              style: AppTextStyles.body.copyWith(color: Colors.white),
             ),
             SizedBox(height: 20),
 
             // Skills progress section
             Text(
               "Skills Progress:",
-              style: AppTextStyles.subheader,
+              style: AppTextStyles.subheader.copyWith(color: Colors.white),
             ),
             ...student.skills.entries.map((entry) {
               return Padding(
@@ -67,13 +66,16 @@ class StudentProfileScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("${entry.key} (${entry.value}%)"),
+                    Text(
+                      "${entry.key} (${entry.value}%)",
+                      style: TextStyle(color: Colors.white),
+                    ),
                     SizedBox(height: 4),
                     LinearProgressIndicator(
                       value: entry.value / 100,
                       minHeight: 10,
-                      backgroundColor: Colors.grey[200],
-                      color: AppColors.categoryColors[entry.key]!,
+                      backgroundColor: Colors.grey[300],
+                      color: AppColors.categoryColors[entry.key] ?? Colors.white,
                     ),
                   ],
                 ),
@@ -85,7 +87,7 @@ class StudentProfileScreen extends StatelessWidget {
             // Action cards for the four modules
             Text(
               "Actions:",
-              style: AppTextStyles.subheader,
+              style: AppTextStyles.subheader.copyWith(color: Colors.white),
             ),
             SizedBox(height: 12),
             Wrap(
